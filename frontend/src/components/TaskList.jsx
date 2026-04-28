@@ -1,8 +1,8 @@
 import React from 'react';
 import TaskItem from './TaskItem';
+import { PartyPopper } from 'lucide-react';
 
 const TaskList = ({ tasks, onTaskDeleted }) => {
-  // Sort tasks by deadline (closest first) and then by priority
   const priorityWeight = { High: 3, Medium: 2, Low: 1 };
   
   const sortedTasks = [...tasks].sort((a, b) => {
@@ -18,8 +18,12 @@ const TaskList = ({ tasks, onTaskDeleted }) => {
 
   if (tasks.length === 0) {
     return (
-      <div className="text-center py-12 px-4 rounded-xl border border-dashed border-gray-300 bg-gray-50">
-        <p className="text-gray-500">No tasks found. You are all caught up!</p>
+      <div className="flex flex-col items-center justify-center text-center py-16 px-4 rounded-3xl border-2 border-dashed border-gray-200 bg-white/40">
+        <div className="w-16 h-16 bg-gradient-to-tr from-green-400 to-emerald-500 rounded-full flex items-center justify-center text-white mb-4 shadow-lg shadow-green-500/20">
+          <PartyPopper className="w-8 h-8" />
+        </div>
+        <h3 className="text-xl font-bold text-gray-800 mb-2">You're all caught up!</h3>
+        <p className="text-gray-500 max-w-sm">No tasks found. Take a break, relax, or add a new task to get started on your next goal.</p>
       </div>
     );
   }

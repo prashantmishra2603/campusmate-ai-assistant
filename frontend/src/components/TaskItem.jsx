@@ -95,3 +95,41 @@ const TaskItem = ({ task, onDeleted }) => {
           
           <div className="flex items-center gap-1.5">
             <div className="p-1 bg-gray-100 rounded-md text-gray-600">{getCategoryIcon()}</div>
+            <span>{task.category}</span>
+          </div>
+          
+          <div className="flex items-center gap-2">
+            <span className="relative flex h-2.5 w-2.5">
+              {task.priority === 'High' && <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>}
+              <span className={cn(
+                "relative inline-flex rounded-full h-2.5 w-2.5",
+                task.priority === 'High' ? 'bg-red-500' : task.priority === 'Medium' ? 'bg-yellow-500' : 'bg-green-500'
+              )}></span>
+            </span>
+            <span>{task.priority}</span>
+          </div>
+        </div>
+      </div>
+      
+      <div className="flex items-center gap-2 sm:opacity-0 sm:-translate-x-4 sm:group-hover:opacity-100 sm:group-hover:translate-x-0 transition-all duration-300 relative z-10">
+        <button 
+          onClick={handleAddToCalendar}
+          className="flex items-center gap-2 px-3 py-2 text-sm font-semibold text-primary bg-primary/10 hover:bg-primary hover:text-white rounded-xl transition-colors tooltip shadow-sm"
+          title="Add to Google Calendar"
+        >
+          <CalendarPlus className="w-4 h-4" />
+          <span className="hidden sm:inline">Add</span>
+        </button>
+        <button 
+          onClick={handleDelete}
+          className="p-2 text-red-500 bg-red-50 hover:bg-red-500 hover:text-white rounded-xl transition-colors tooltip shadow-sm"
+          title="Delete Task"
+        >
+          <Trash2 className="w-4 h-4" />
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default TaskItem;
